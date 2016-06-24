@@ -5,5 +5,9 @@ import attr from 'ember-data/attr';
 export default Model.extend({
   changeType: attr('string'),
   entryDate: attr('string'),
-  value: attr('number')
+  value: attr('number'),
+  isExpense: Ember.computed('changeType', function(){
+    return this.get('changeType') === 'expense';
+  }),
+  isIncome: Ember.computed.not('isExpense')
 });

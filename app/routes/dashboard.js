@@ -16,5 +16,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       transition.abort();
       this.transitionTo('dashboard.overview');
     }
+  },
+  model() {
+    /*return Ember.RSVP.hash({
+      balanceChanges: this.store.findAll('balance-change'),
+      categories: this.store.query('category', { filter: {period: params.period }})
+    });*/
+    return this.store.findAll('balance-change');
   }
 });

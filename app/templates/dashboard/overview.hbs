@@ -1,1 +1,20 @@
 <h1>Overview</h1>
+<p> Incomes total: {{money incomeSum}} </p>
+<p> Expenses total: {{money expenseSum}} </p>
+<p> Result: {{money sumDifference}} </p>
+<p> Incomes: ({{incomes.length}}) </p>
+<ul>
+  {{#each incomes as |income|}}
+    <li>
+      {{money income.value}} ({{income.entryDate}})
+    </li>
+  {{/each}}
+</ul>
+<p> Expenses: ({{expenses.length}}) </p>
+<ul>
+  {{#each expenses as |expense|}}
+    <li>
+      {{money expense.value}} ({{expense.entryDate}})
+    </li>
+  {{/each}}
+</ul>
