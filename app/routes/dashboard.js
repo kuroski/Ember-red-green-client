@@ -1,4 +1,20 @@
 import Ember from 'ember';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(AuthenticatedRouteMixin, {
+  session: Ember.inject.service(),
+  actions: {
+    logout() {
+      this.get('session').invalidate();
+    }
+  },
+  beforeModel(transition) {
+    // trigger AuthenticatedRouteMixin's beforeModel
+    this._super(...arguments);
+
+    if (transition.targetName === 'dashboard.index') {
+      transition.abort();
+      this.transitionTo('dashboard.overview');
+    }
+  }
 });

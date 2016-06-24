@@ -11,7 +11,10 @@
     </button>
   </div>
   <div class="user-actions">
-    <button>
+    <a>
+      {{session.currentUser.email}}
+    </a>
+    <button {{action 'logout'}}>
       Sign out
     </button>
   </div>
