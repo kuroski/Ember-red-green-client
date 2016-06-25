@@ -22,7 +22,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       this.transitionTo('dashboard.overview');
     }
   },
-  model() {
+  model(params) {
     return this.store.query('balance-change', { filter: { period: params.period}});
   }
 });
