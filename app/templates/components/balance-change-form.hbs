@@ -7,3 +7,10 @@ autofocus />
 <button {{action (action save balanceChangeData)}}>
   Save
 </button>
+
+{{#each balanceChange.errors as |error|}}
+  <p>
+    {{error.attribute}}:
+    {{error.message}}
+  </p>
+{{/each}}
