@@ -11,7 +11,7 @@
     {{#each incomes as |income|}}
       {{balance-change
       balanceChange=income
-      currencySymbol="$"
+      currencySymbol=session.currentUser.currencySymbol
       }}
     {{/each}}
   </ul>
