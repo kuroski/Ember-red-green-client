@@ -3,6 +3,11 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   session: Ember.inject.service(),
+  queryParams: {
+    period: {
+      refreshModel: true
+    }
+  },
   actions: {
     logout() {
       this.get('session').invalidate();
@@ -18,10 +23,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     }
   },
   model() {
-    /*return Ember.RSVP.hash({
-      balanceChanges: this.store.findAll('balance-change'),
-      categories: this.store.query('category', { filter: {period: params.period }})
-    });*/
-    return this.store.findAll('balance-change');
+    return this.store.query('balance-change', { filter: { period: params.period}});
   }
 });
