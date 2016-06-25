@@ -6,8 +6,12 @@ autofocus />
 
 <button {{action (action save balanceChangeData)}}
         class="{{if (not isValid) 'invalid' 'valid'}}"
-        disabled={{not isValid}}>
-  Save
+        disabled={{disableButton}}>
+  {{#if balanceChange.isSaving}}
+    saving...
+  {{else}}
+    save
+  {{/if}}
 </button>
 
 {{#if valueIsNegative}}

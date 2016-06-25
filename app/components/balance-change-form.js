@@ -34,6 +34,9 @@ export default Ember.Component.extend({
   isValid: Ember.computed('balanceChangeData.value', 'valueIsNegative', function() {
     return this.get('balanceChangeData.value') && !this.get('valueIsNegative');
   }),
+  disableButton: Ember.computed('balanceChange.isSaving', 'isValid', function() {
+    return this.get('balanceChange.isSaving') || !this.get('isValid');
+  }),
   actions: {
     updateValueFromInput(value) {
       this.set('balanceChangeData.value', this.unformatInput(value));
