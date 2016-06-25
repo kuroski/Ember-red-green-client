@@ -28,6 +28,12 @@ export default Ember.Component.extend({
       return value;
     }
   }),
+  valueIsNegative: Ember.computed('balanceChangeData.value', function() {
+    return this.get('balanceChangeData.value') < 0;
+  }),
+  isValid: Ember.computed('balanceChangeData.value', 'valueIsNegative', function() {
+    return this.get('balanceChangeData.value') && !this.get('valueIsNegative');
+  }),
   actions: {
     updateValueFromInput(value) {
       this.set('balanceChangeData.value', this.unformatInput(value));

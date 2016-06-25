@@ -4,9 +4,17 @@ oninput={{action 'updateValueFromInput' value='target.value'}}
 autofocus />
 {{currencySymbol}}
 
-<button {{action (action save balanceChangeData)}}>
+<button {{action (action save balanceChangeData)}}
+        class="{{if (not isValid) 'invalid' 'valid'}}"
+        disabled={{not isValid}}>
   Save
 </button>
+
+{{#if valueIsNegative}}
+  <p class="red">
+    Value must be a positive number.
+  </p>
+{{/if}}
 
 {{#each balanceChange.errors as |error|}}
   <p>
